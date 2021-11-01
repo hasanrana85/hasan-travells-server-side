@@ -66,6 +66,25 @@ async function run (){
             res.json(visitors);
         })
 
+        //Get email visitor
+        app.get('/visitor/:email', async(req, res) =>{
+            const email = req.params.email;
+            const query = {email:email};
+            const result = await visitorCollection.find(query).toArray();
+            // const visitor =  result.toArray();
+            res.send(result);
+        })
+
+        // UPDATE API
+        // app.put('/visitor/:email', async(req, res) =>{
+        //     const email = req.params.email;
+        //     const updatedStatus = req.body;
+        //     const filter = {email:email};
+        //     const result = await visitorCollection.updateOne(filter);
+        //     console.log('updating user email', email);
+        //     res.send('updating not dating');
+        // })
+
         // Delete Visitor
         app.delete('/visitor/:id', async(req, res) =>{
             const id = req.params.id;
